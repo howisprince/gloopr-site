@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0a0a0a" />
+  <title>GLOOPR — Doorstep Car Cleaning Services | Jaipur</title>
+  <meta name="description" content="GLOOPR — professional car cleaning at your doorstep in Jaipur. Quick Shine, Deep Cleaning, Rubbing & Polishing, and Windshield Polish. Book in 60 seconds." />
+  <link rel="canonical" href="https://gloopr.in" />
+  <meta property="og:site_name" content="GLOOPR" />
+  <meta property="og:title" content="GLOOPR — Doorstep Car Cleaning Services" />
+  <meta property="og:description" content="Professional car cleaning at your doorstep in Jaipur. Book in 60 seconds." />
+  <meta property="og:url" content="https://gloopr.in" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://gloopr.in/assets/logo.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="GLOOPR — Doorstep Car Cleaning Services" />
+  <meta name="twitter:description" content="Professional car cleaning at your doorstep in Jaipur. Book in 60 seconds." />
+  <meta name="twitter:image" content="https://gloopr.in/assets/logo.png" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="apple-touch-icon" href="assets/logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="styles.css?v=2" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            background: '#0a0a0a',
+            foreground: '#ffffff',
+            'neon-green': '#00ff88',
+            'neon-cyan': '#00e5ff',
+            'dark-card': '#141414',
+            'dark-border': '#1f1f1f',
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            display: ['"Space Grotesk"', 'system-ui', 'sans-serif'],
+          },
+        },
+      },
+    };
+  </script>
+</head>
+<body class="bg-background text-foreground font-sans antialiased overflow-x-hidden">
+  <!-- ============== NAVBAR ============== -->
+  <header id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+      <a href="#hero" class="flex items-center gap-2 group">
+        <img src="favicon.svg" alt="GLOOPR" class="h-9 w-9 group-hover:scale-110 transition-transform" />
+        <span class="font-display text-xl font-bold tracking-tight">GLOOPR</span>
+      </a>
+      <nav class="hidden md:flex items-center gap-8">
+        <a href="#packages" class="text-sm text-white/70 hover:text-white transition-colors">Packages</a>
+        <a href="#booking" class="text-sm text-white/70 hover:text-white transition-colors">Book</a>
+        <a href="#process" class="text-sm text-white/70 hover:text-white transition-colors">How it works</a>
+        <a href="#reviews" class="text-sm text-white/70 hover:text-white transition-colors">Reviews</a>
+        <a href="#faq" class="text-sm text-white/70 hover:text-white transition-colors">FAQ</a>
+      </nav>
+      <div class="hidden md:flex items-center gap-3">
+        <span class="px-3 py-1.5 rounded-full border border-dark-border text-xs text-white/70 inline-flex items-center gap-1">📍 <span id="city-label">Jaipur</span></span>
+        <a href="#booking" class="px-4 py-2 rounded-full bg-neon-green text-black text-sm font-semibold hover:bg-neon-cyan transition-colors">Book Now</a>
+      </div>
+      <button id="mobile-toggle" class="md:hidden p-2 text-white" aria-label="Toggle menu">
+        <div class="w-6 h-5 flex flex-col justify-between">
+          <span class="block h-0.5 w-full bg-white transition-transform duration-300" id="bar1"></span>
+          <span class="block h-0.5 w-full bg-white transition-opacity duration-300" id="bar2"></span>
+          <span class="block h-0.5 w-full bg-white transition-transform duration-300" id="bar3"></span>
+        </div>
+      </button>
+    </div>
+    <div id="mobile-menu" class="md:hidden bg-background/95 backdrop-blur-xl border-b border-dark-border overflow-hidden max-h-0 transition-all duration-300">
+      <div class="px-6 py-6 flex flex-col gap-4">
+        <a href="#packages" class="text-white/80 hover:text-white text-lg mobile-link">Packages</a>
+        <a href="#booking" class="text-white/80 hover:text-white text-lg mobile-link">Book</a>
+        <a href="#process" class="text-white/80 hover:text-white text-lg mobile-link">How it works</a>
+        <a href="#reviews" class="text-white/80 hover:text-white text-lg mobile-link">Reviews</a>
+        <a href="#faq" class="text-white/80 hover:text-white text-lg mobile-link">FAQ</a>
+        <div class="flex items-center gap-3 pt-4 border-t border-dark-border">
+          <span class="px-3 py-1.5 rounded-full border border-dark-border text-sm inline-flex items-center gap-1">📍 <span id="city-label-mobile">Jaipur</span></span>
+          <a href="#booking" class="flex-1 px-4 py-2 rounded-full bg-neon-green text-black text-center text-sm font-semibold mobile-link">Book Now</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============== HERO ============== -->
+  <section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden bg-radial-gradient pt-16">
+    <div class="absolute inset-0 bg-grid opacity-30"></div>
+    <div class="absolute -right-20 top-1/4 w-96 h-96 rounded-full bg-neon-green/10 blur-3xl animate-float"></div>
+    <div class="absolute -left-20 bottom-1/4 w-96 h-96 rounded-full bg-neon-cyan/10 blur-3xl animate-float" style="animation-delay: -3s;"></div>
+
+    <div class="relative z-10 max-w-6xl mx-auto px-6 pt-12 pb-16 text-center">
+      <div class="reveal inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-neon-green/30 bg-neon-green/5 backdrop-blur-sm mb-8" style="--delay: 100ms;">
+        <span class="relative flex h-2 w-2">
+          <span class="absolute inline-flex h-full w-full rounded-full bg-neon-green opacity-75 animate-ping"></span>
+          <span class="relative inline-flex rounded-full h-2 w-2 bg-neon-green"></span>
+        </span>
+        <span class="text-xs text-neon-green font-medium tracking-wide">NEXT SLOT: TODAY, 4:30 PM</span>
+      </div>
+
+      <h1 class="font-display text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-bold leading-[0.9] tracking-tight mb-6">
+        <span class="block reveal" style="--delay: 200ms;">DOORSTEP</span>
+        <span class="block gradient-text reveal" style="--delay: 350ms;">CAR CLEANING</span>
+      </h1>
+
+      <p class="reveal text-lg md:text-xl text-white/60 max-w-2xl mx-auto mb-10" style="--delay: 550ms;">
+        Professional car care, at your curb. Serving Jaipur with doorstep detailing that comes to you.
+      </p>
+
+      <div class="reveal flex flex-col sm:flex-row items-center justify-center gap-4" style="--delay: 700ms;">
+        <a href="#booking" class="group relative px-8 py-4 rounded-full bg-neon-green text-black font-semibold overflow-hidden transition-all hover:scale-105">
+          <span class="relative z-10">Book in 60 seconds →</span>
+          <div class="absolute inset-0 bg-neon-cyan translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+        </a>
+        <a href="#packages" class="px-8 py-4 rounded-full border border-white/20 hover:border-white/40 text-white font-medium transition-all">See packages</a>
+      </div>
+
+      <div class="reveal mt-16 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm text-white/50" style="--delay: 900ms;">
+        <div class="flex items-center gap-2">
+          <span class="text-yellow-400">★★★★★</span>
+          <span>4.8/5 from 500+ happy cars</span>
+        </div>
+        <div class="hidden sm:block w-1 h-1 rounded-full bg-white/30"></div>
+        <div>1,200+ cars cleaned</div>
+        <div class="hidden sm:block w-1 h-1 rounded-full bg-white/30"></div>
+        <div>Pay after service</div>
+      </div>
+
+      <a href="https://wa.me/917976487789?text=Hi%20GLOOPR!%20I%20have%20a%20question." target="_blank" rel="noopener noreferrer" class="reveal inline-flex items-center gap-2 mt-8 text-sm text-white/40 hover:text-white/70 transition-colors" style="--delay: 1100ms;">
+        <span>💬</span>
+        <span>Or chat with us on WhatsApp</span>
+      </a>
+    </div>
+
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 reveal" style="--delay: 1500ms;">
+      <div class="w-6 h-10 rounded-full border-2 border-white/20 flex items-start justify-center p-1.5">
+        <div class="w-1.5 h-1.5 rounded-full bg-neon-green animate-scroll"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== PACKAGES ============== -->
+  <section id="packages" class="py-24 md:py-32 relative">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16 reveal">
+        <div class="inline-block px-3 py-1 rounded-full border border-neon-green/30 bg-neon-green/5 text-xs text-neon-green font-medium mb-4">SERVICES</div>
+        <h2 class="font-display text-4xl md:text-6xl font-bold tracking-tight mb-4">Packages for <span class="gradient-text">every ride</span></h2>
+        <p class="text-white/60 max-w-2xl mx-auto">From a quick exterior refresh to a full showroom restoration. Pick what your car needs — we'll bring it to your doorstep.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="reveal glass-card rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1">
+          <div class="flex items-start justify-between mb-4">
+            <div>
+              <h3 class="font-display text-xl font-bold mb-1">Quick Shine</h3>
+              <p class="text-white/50 text-xs uppercase tracking-wider">~1 hr</p>
+            </div>
+            <div class="w-10 h-10 rounded-full bg-neon-green/10 border border-neon-green/20 flex items-center justify-center text-neon-green">💧</div>
+          </div>
+          <p class="text-white/60 text-sm mb-5">Fast exterior refresh for everyday shine.</p>
+          <div class="mb-5">
+            <div class="flex items-baseline gap-1"><span class="text-3xl font-bold">₹349</span><span class="text-white/50 text-sm">/-</span></div>
+          </div>
+          <ul class="space-y-2 mb-6 min-h-[140px]">
+            <li class="flex items-start gap-2 text-sm text-white/70"><span class="text-neon-green mt-0.5">✓</span><span>Exterior foam wash</span></li>
+            <li class="flex items-start gap-2 text-sm text-white/70"><span class="text-neon-green mt-0.5">✓</span><span>Tire dressing</span></li>
+            <li class="flex items-start gap-2 text-sm text-white/70"><span class="text-neon-green mt-0.5">✓</span><span>Window wipe-down</span></li>
+            <li class="flex items-start gap-2 text-sm text-white/70"><span class="text-neon-green mt-0.5">✓</span><span>Air blow-dry</span></li>
+          </ul>
+          <div class="flex flex-col gap-2">
+            <a href="#booking" class="w-full px-4 py-2.5 rounded-full bg-neon-green text-black text-sm font-semibold hover:bg-neon-cyan transition-colors text-center">Book Now</a>
+            <a href="https://wa.me/917976487789?text=Hi%20GLOOPR!%20Tell%20me%20more%20about%20the%20Quick%20Shine%20package." target="_blank" rel="noopener noreferrer" class="w-full px-4 py-2.5 rounded-full border border-white/10 text-white/70 text-sm hover:border-white/30 hover:text-white transition-all text-center">Ask on WhatsApp</a>
+          </div>
+        </div>
+
+        <div class="reveal relative" style="--delay: 100ms;">
+          <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-gradient-to-r from-neon-green to-neon-cyan text-black text-xs font-bold z-10">MOST POPULAR</div>
+          <div class="glass-card rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1 h-full">
+            <div class="flex items-start justify-between mb-4">
+              <div>
+                <h3 class="font-display text-xl font-bold mb-1">Deep Cleaning</h3>
+                <p class="text-white/50 text-xs uppercase tracking-wider">2–3 hrs</p>
+              </div>
+              <div class="w-10 h-10 rounded-full bg-neon-green/10 border border-neon-green/20 flex items-center justify-center text-neon-green">🧽</div>
+            </div>
+            <p class="text-white/60 text-sm mb-5">Top-to-bottom inside-and-out transformation.</p>
+            <div class="mb-5">
+              <div class="flex items-baseline gap-1"><span class="text-3xl font-bold">₹799</span><span class="text-white/50 text-sm">/-</span></div>
+            </div>
+            <ul class="space-y-2 mb-6 min-h-[140px]">
+              <li class="flex items-start gap-2 text-sm text-white/70"><span class="text-neon-green mt-0.5">✓</span><span>Full interior vacuum</span></li>
+              <li class="flex items-start gap-2 text-sm text-white/70"><span class="text-neon-green mt-0.5">✓</span><span>Dashboard dressing</span></li>
+              <li class="flex items-start gap-2 text-sm text-white/70"><span class="text-neon-green mt-0.5">✓</span><span>Door jambs cleaned</span></li>
+              <li class="flex items-start gap-2 text-sm text-white/70"><span class="text-neon-green mt-0.5">✓</span><span>Exterior foam wash</span></li>
+              <li class="flex items-start gap-2 text-sm text-white/70"><span class="text-neon-green mt-0.5">✓</span><span>Mat shampoo</span></li>
+            </ul>
+            <div class="flex flex-col gap-2">
+              <a href="#booking" class="w-full px-4 py-2.5 rounded-full bg-neon-green text-black text-sm font-semibold hover:bg-neon-cyan transition-colors text-center">Book Now</a>
+              <a href="https://wa.me/917976487789?text=Hi%20GLOOPR!%20Tell%20me%20more%20about%20the%20Deep%20Cleaning%20package." target="_blank" rel="noopener noreferrer" class="w-full px-4 py-2.5 rounded-full border border-white/10 text-white/70 text-sm hover:border-white/30 hover:text-white transition-all text-center">Ask on WhatsApp</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="reveal glass-card rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1" style="--delay: 200ms;">
+          <div class="flex items-start justify-between mb-4">
+            <div>
+              <h3 class="font-display text-xl font-bold mb-1">Rubbing &amp; Polishing</h3>
+              <p class="text-white/50 text-xs uppercase tracking-wider">2–3 hrs</p>
+            </div>
+            <div class="w-10 h-10 rounded-full bg-neon-green/10 border border-neon-green/20 flex items-center justify-center text-neon-green">✨</div>
+          </div>
+          <p class="text-white/60 text-sm mb-5">Restore showroom-grade paint finish.</p>
+          <div class="mb-5">
+            <div class="flex items-baseline gap-1"><span class="text-3xl font-bold">₹1399</span><span class="text-white/50 text-sm">/-</span></div>
+          </div>
+          <ul class="space-y-2 mb-6 min-h-[140px]">
+            <li class="flex items-start gap-2 text-sm text-white/70"><span class="text-neon-green mt-0.5">✓</span><span>Paint correction</span></li>
+            <li class="flex items-start gap-2 text-sm text-white/70"><span class="text-neon-green mt-0.5">✓</span><span>Hand polish</span></li>
+            <li class="flex items-start gap-2 text-sm text-white/70"><span class="text-neon-green mt-0.5">✓</span><span>Wax coating</span></li>
+            <li class="flex items-start gap-2 text-sm text-white/70"><span class="text-neon-green mt-0.5">✓</span><span>All Deep Cleaning items</span></li>
+            <li class="flex items-start gap-2 text-sm text-white/70"><span class="text-neon-green mt-0.5">✓</span><span>Headlight restoration</span></li>
+          </ul>
+          <div class="flex flex-col gap-2">
+            <a href="#booking" class="w-full px-4 py-2.5 rounded-full bg-neon-green text-black text-sm font-semibold hover:bg-neon-cyan transition-colors text-center">Book Now</a>
+            <a href="https://wa.me/917976487789?text=Hi%20GLOOPR!%20Tell%20me%20more%20about%20the%20Rubbing%20%26%20Polishing%20package." target="_blank" rel="noopener noreferrer" class="w-full px-4 py-2.5 rounded-full border border-white/10 text-white/70 text-sm hover:border-white/30 hover:text-white transition-all text-center">Ask on WhatsApp</a>
+          </div>
+        </div>
+
+        <div class="reveal glass-card rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1" style="--delay: 300ms;">
+          <div class="flex items-start justify-between mb-4">
+            <div>
+              <h3 class="font-display text-xl font-bold mb-1">Windshield Polish</h3>
+              <p class="text-white/50 text-xs uppercase tracking-wider">~2 hrs</p>
+            </div>
+            <div class="w-10 h-10 rounded-full bg-neon-green/10 border border-neon-green/20 flex items-center justify-center text-neon-green">🌧️</div>
+          </div>
+          <p class="text-white/60 text-sm mb-5">Crystal-clear glass with water-repellent coat.</p>
+          <div class="mb-5">
+            <div class="flex items-baseline gap-1"><span class="text-3xl font-bold">₹799</span><span class="text-white/50 text-sm">/-</span></div>
+          </div>
+          <ul class="space-y-2 mb-6 min-h-[140px]">
+            <li class="flex items-start gap-2 text-sm text-white/70"><span class="text-neon-green mt-0.5">✓</span><span>Glass polishing compound</span></li>
+            <li class="flex items-start gap-2 text-sm text-white/70"><span class="text-neon-green mt-0.5">✓</span><span>Wiper blade cleaning</span></li>
+            <li class="flex items-start gap-2 text-sm text-white/70"><span class="text-neon-green mt-0.5">✓</span><span>Water-repellent coat</span></li>
+            <li class="flex items-start gap-2 text-sm text-white/70"><span class="text-neon-green mt-0.5">✓</span><span>Streak-free finish</span></li>
+          </ul>
+          <div class="flex flex-col gap-2">
+            <a href="#booking" class="w-full px-4 py-2.5 rounded-full bg-neon-green text-black text-sm font-semibold hover:bg-neon-cyan transition-colors text-center">Book Now</a>
+            <a href="https://wa.me/917976487789?text=Hi%20GLOOPR!%20Tell%20me%20more%20about%20the%20Windshield%20Polish%20package." target="_blank" rel="noopener noreferrer" class="w-full px-4 py-2.5 rounded-full border border-white/10 text-white/70 text-sm hover:border-white/30 hover:text-white transition-all text-center">Ask on WhatsApp</a>
+          </div>
+        </div>
+      </div>
+
+      <p class="text-center text-white/40 text-sm mt-10 reveal">
+        All packages include free water, power, and doorstep service. · <a href="#calculator" class="text-neon-green hover:underline">Try our pricing calculator</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- ============== BOOKING FORM ============== -->
+  <section id="booking" class="py-24 md:py-32 relative">
+    <div class="absolute inset-0 bg-radial-gradient opacity-50"></div>
+    <div class="relative max-w-4xl mx-auto px-6">
+      <div class="text-center mb-12 reveal">
+        <div class="inline-block px-3 py-1 rounded-full border border-neon-cyan/30 bg-neon-cyan/5 text-xs text-neon-cyan font-medium mb-4">BOOK NOW</div>
+        <h2 class="font-display text-4xl md:text-6xl font-bold tracking-tight mb-4">Book your <span class="gradient-text">wash</span></h2>
+        <p class="text-white/60 max-w-xl mx-auto">60 seconds is all it takes. We'll confirm via WhatsApp within 5 minutes.</p>
+      </div>
+
+      <div id="booking-form-wrapper">
+        <form id="booking-form" class="glass-card rounded-3xl p-6 md:p-10" novalidate>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <div>
+              <label class="block text-sm text-white/60 mb-2">City</label>
+              <select name="city" class="form-input">
+                <option>Jaipur</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-sm text-white/60 mb-2">Car type</label>
+              <select name="carType" class="form-input">
+                <option>Hatchback</option>
+                <option selected>Sedan</option>
+                <option>SUV</option>
+                <option>Premium</option>
+              </select>
+            </div>
+            <div class="md:col-span-2">
+              <label class="block text-sm text-white/60 mb-2">Package</label>
+              <div class="grid grid-cols-2 md:grid-cols-4 gap-2">
+                <button type="button" data-pkg="quick" class="pkg-btn px-3 py-3 rounded-xl text-sm font-medium border">Quick Shine</button>
+                <button type="button" data-pkg="deep" class="pkg-btn px-3 py-3 rounded-xl text-sm font-medium border bg-neon-green text-black border-neon-green">Deep Cleaning</button>
+                <button type="button" data-pkg="rubbing" class="pkg-btn px-3 py-3 rounded-xl text-sm font-medium border">Rubbing &amp; Polishing</button>
+                <button type="button" data-pkg="windshield" class="pkg-btn px-3 py-3 rounded-xl text-sm font-medium border">Windshield Polish</button>
+              </div>
+            </div>
+            <div>
+              <label class="block text-sm text-white/60 mb-2">Date</label>
+              <input type="date" name="date" class="form-input" />
+              <p class="text-red-400 text-xs mt-1 hidden" data-error="date"></p>
+            </div>
+            <div>
+              <label class="block text-sm text-white/60 mb-2">Time slot</label>
+              <select name="time" class="form-input">
+                <option>8:00 AM</option><option>9:30 AM</option><option>11:00 AM</option>
+                <option>12:30 PM</option><option>2:00 PM</option><option>3:30 PM</option>
+                <option>5:00 PM</option><option selected>6:30 PM</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-sm text-white/60 mb-2">Your name</label>
+              <input type="text" name="name" placeholder="Rahul Sharma" class="form-input" />
+              <p class="text-red-400 text-xs mt-1 hidden" data-error="name"></p>
+            </div>
+            <div>
+              <label class="block text-sm text-white/60 mb-2">Phone (10-digit)</label>
+              <input type="tel" name="phone" placeholder="7976487789" maxlength="10" class="form-input" />
+              <p class="text-red-400 text-xs mt-1 hidden" data-error="phone"></p>
+            </div>
+            <div class="md:col-span-2">
+              <label class="block text-sm text-white/60 mb-2">Address (where should we come?)</label>
+              <textarea name="address" placeholder="House no, street, area, landmark" rows="2" class="form-input resize-none"></textarea>
+              <p class="text-red-400 text-xs mt-1 hidden" data-error="address"></p>
+            </div>
+          </div>
+          <div class="mt-8 flex flex-col sm:flex-row items-center gap-4">
+            <button type="submit" class="w-full sm:flex-1 px-6 py-4 rounded-full bg-neon-green text-black font-semibold hover:bg-neon-cyan transition-colors">Confirm booking →</button>
+            <p class="text-xs text-white/50 text-center sm:text-left">🔒 No payment required now.<br />Pay after service.</p>
+          </div>
+        </form>
+
+        <div id="booking-success" class="hidden glass-card rounded-3xl p-8 md:p-12 text-center">
+          <div class="w-20 h-20 mx-auto mb-6 rounded-full bg-gradient-to-br from-neon-green to-neon-cyan flex items-center justify-center text-3xl">✓</div>
+          <h3 class="font-display text-3xl font-bold mb-3">You're booked!</h3>
+          <p class="text-white/60 mb-2">Booking reference: <span id="booking-id" class="text-neon-green font-mono"></span></p>
+          <p class="text-white/60 mb-8 max-w-md mx-auto">Tap below to send the full booking to our team on WhatsApp. We'll confirm your slot within 5 minutes.</p>
+          <div class="flex flex-col sm:flex-row gap-3 justify-center">
+            <a id="continue-wa" href="#" target="_blank" rel="noopener noreferrer" class="px-6 py-3 rounded-full bg-neon-green text-black font-semibold hover:bg-neon-cyan transition-colors">Continue on WhatsApp →</a>
+            <button id="book-another" class="px-6 py-3 rounded-full border border-white/10 text-white/70 hover:border-white/30 transition-all">Book another</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== BEFORE/AFTER ============== -->
+  <section class="py-24 md:py-32 bg-dark-card/30">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-12 reveal">
+        <div class="inline-block px-3 py-1 rounded-full border border-neon-green/30 bg-neon-green/5 text-xs text-neon-green font-medium mb-4">THE TRANSFORMATION</div>
+        <h2 class="font-display text-4xl md:text-6xl font-bold tracking-tight mb-4">Drag to see the <span class="gradient-text">magic</span></h2>
+        <p class="text-white/60 max-w-xl mx-auto">Real results from a real GLOOPR deep clean. Move the slider to reveal the difference.</p>
+      </div>
+
+      <div id="before-after" class="reveal relative aspect-[16/10] md:aspect-[16/8] rounded-3xl overflow-hidden cursor-ew-resize select-none border border-dark-border">
+        <!-- After side (full background) -->
+        <div class="absolute inset-0 bg-gradient-to-br from-neon-cyan/30 via-neon-green/20 to-neon-cyan/10 flex items-center justify-center">
+          <div class="text-center">
+            <div class="text-8xl md:text-9xl mb-4">🚙</div>
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-neon-green/20 border border-neon-green/40 text-neon-green text-sm font-medium">✨ After GLOOPR</div>
+          </div>
+        </div>
+        <!-- Before side (clipped) -->
+        <div id="ba-before" class="absolute inset-0 bg-gradient-to-br from-amber-900/40 via-stone-700/40 to-amber-900/40 flex items-center justify-center transition-[clip-path] duration-100">
+          <div class="text-center">
+            <div class="text-8xl md:text-9xl mb-4 grayscale" style="filter: grayscale(80%) brightness(0.7);">🚗</div>
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/20 border border-amber-500/40 text-amber-300 text-sm font-medium">🟤 Before</div>
+          </div>
+        </div>
+        <!-- Slider line -->
+        <div id="ba-handle" class="absolute top-0 bottom-0 w-1 bg-white pointer-events-none" style="left: 50%; transform: translateX(-50%);">
+          <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white flex items-center justify-center shadow-2xl">
+            <span class="text-black text-xl">⇆</span>
+          </div>
+        </div>
+        <div class="absolute bottom-4 left-4 px-3 py-1 rounded-full bg-black/60 backdrop-blur-sm text-xs text-white/80">BEFORE</div>
+        <div class="absolute bottom-4 right-4 px-3 py-1 rounded-full bg-black/60 backdrop-blur-sm text-xs text-white/80">AFTER</div>
+      </div>
+      <p class="text-center text-white/40 text-sm mt-6">← Drag the handle to compare →</p>
+    </div>
+  </section>
+
+  <!-- ============== PRICING CALCULATOR ============== -->
+  <section id="calculator" class="py-24 md:py-32">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="text-center mb-12 reveal">
+        <div class="inline-block px-3 py-1 rounded-full border border-neon-cyan/30 bg-neon-cyan/5 text-xs text-neon-cyan font-medium mb-4">PRICING CALCULATOR</div>
+        <h2 class="font-display text-4xl md:text-6xl font-bold tracking-tight mb-4">Estimate your <span class="gradient-text">total</span></h2>
+        <p class="text-white/60 max-w-xl mx-auto">Build your perfect package. The price updates as you choose.</p>
+      </div>
+
+      <div class="reveal glass-card rounded-3xl p-6 md:p-10">
+        <div class="grid lg:grid-cols-3 gap-8">
+          <!-- Step 1 -->
+          <div>
+            <div class="text-xs uppercase tracking-wider text-white/40 mb-3">Step 1</div>
+            <h3 class="font-display text-xl font-bold mb-4">Car type</h3>
+            <div class="grid grid-cols-2 gap-2" id="car-type-group">
+              <button data-car="Hatchback" class="car-btn px-4 py-3 rounded-xl text-sm font-medium border bg-dark-card border-dark-border text-white/70">Hatchback</button>
+              <button data-car="Sedan" class="car-btn px-4 py-3 rounded-xl text-sm font-medium border bg-neon-green text-black border-neon-green">Sedan</button>
+              <button data-car="SUV" class="car-btn px-4 py-3 rounded-xl text-sm font-medium border bg-dark-card border-dark-border text-white/70">SUV <span class="text-xs opacity-70">+15%</span></button>
+              <button data-car="Premium" class="car-btn px-4 py-3 rounded-xl text-sm font-medium border bg-dark-card border-dark-border text-white/70">Premium <span class="text-xs opacity-70">+30%</span></button>
+            </div>
+          </div>
+          <!-- Step 2 -->
+          <div>
+            <div class="text-xs uppercase tracking-wider text-white/40 mb-3">Step 2</div>
+            <h3 class="font-display text-xl font-bold mb-4">Package</h3>
+            <div class="grid grid-cols-2 gap-2" id="pkg-calc-group">
+              <button data-pkg-calc="quick" class="pkg-calc-btn px-3 py-3 rounded-xl text-sm font-medium border bg-dark-card border-dark-border text-white/70 text-left"><div>Quick Shine</div><div class="text-xs opacity-70">₹349</div></button>
+              <button data-pkg-calc="deep" class="pkg-calc-btn px-3 py-3 rounded-xl text-sm font-medium border bg-neon-green text-black border-neon-green text-left"><div>Deep Cleaning</div><div class="text-xs opacity-70">₹799</div></button>
+              <button data-pkg-calc="rubbing" class="pkg-calc-btn px-3 py-3 rounded-xl text-sm font-medium border bg-dark-card border-dark-border text-white/70 text-left"><div>Rubbing</div><div class="text-xs opacity-70">₹1399</div></button>
+              <button data-pkg-calc="windshield" class="pkg-calc-btn px-3 py-3 rounded-xl text-sm font-medium border bg-dark-card border-dark-border text-white/70 text-left"><div>Windshield</div><div class="text-xs opacity-70">₹799</div></button>
+            </div>
+          </div>
+          <!-- Step 3 -->
+          <div>
+            <div class="text-xs uppercase tracking-wider text-white/40 mb-3">Step 3 · Optional</div>
+            <h3 class="font-display text-xl font-bold mb-4">Add-ons</h3>
+            <div class="space-y-2" id="addons-group">
+              <button data-addon="vacuum" class="addon-btn w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-sm border bg-dark-card border-dark-border text-white/70"><span class="flex items-center gap-2"><span class="w-4 h-4 rounded border border-white/30 flex items-center justify-center text-xs"></span>Interior deep vacuum</span><span class="text-xs text-white/50">+₹199</span></button>
+              <button data-addon="tire" class="addon-btn w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-sm border bg-dark-card border-dark-border text-white/70"><span class="flex items-center gap-2"><span class="w-4 h-4 rounded border border-white/30 flex items-center justify-center text-xs"></span>Premium tire dressing</span><span class="text-xs text-white/50">+₹99</span></button>
+              <button data-addon="engine" class="addon-btn w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-sm border bg-dark-card border-dark-border text-white/70"><span class="flex items-center gap-2"><span class="w-4 h-4 rounded border border-white/30 flex items-center justify-center text-xs"></span>Engine bay detail</span><span class="text-xs text-white/50">+₹299</span></button>
+              <button data-addon="ceramic" class="addon-btn w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-sm border bg-dark-card border-dark-border text-white/70"><span class="flex items-center gap-2"><span class="w-4 h-4 rounded border border-white/30 flex items-center justify-center text-xs"></span>Ceramic spray sealant</span><span class="text-xs text-white/50">+₹499</span></button>
+              <button data-addon="leather" class="addon-btn w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-sm border bg-dark-card border-dark-border text-white/70"><span class="flex items-center gap-2"><span class="w-4 h-4 rounded border border-white/30 flex items-center justify-center text-xs"></span>Leather conditioning</span><span class="text-xs text-white/50">+₹249</span></button>
+              <button data-addon="pet" class="addon-btn w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-sm border bg-dark-card border-dark-border text-white/70"><span class="flex items-center gap-2"><span class="w-4 h-4 rounded border border-white/30 flex items-center justify-center text-xs"></span>Pet hair removal</span><span class="text-xs text-white/50">+₹199</span></button>
+            </div>
+          </div>
+        </div>
+        <div class="mt-8 pt-8 border-t border-dark-border flex flex-col md:flex-row items-center justify-between gap-4">
+          <div>
+            <div class="text-sm text-white/50 mb-1">Estimated total</div>
+            <div class="flex items-baseline gap-2">
+              <span id="calc-total" class="text-4xl md:text-5xl font-bold gradient-text">₹799</span>
+              <span class="text-white/50 text-sm">/-</span>
+            </div>
+            <div id="calc-breakdown" class="text-xs text-white/40 mt-1">Base ₹799</div>
+          </div>
+          <a href="#booking" class="px-6 py-3 rounded-full bg-neon-green text-black font-semibold hover:bg-neon-cyan transition-colors">Looks good — Book this →</a>
+        </div>
+        <p class="text-xs text-white/40 mt-4 text-center md:text-left">* Final price may vary based on car condition. Confirmed on inspection.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== STATS ============== -->
+  <section class="py-24 md:py-32 bg-dark-card/30">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div class="reveal">
+          <div class="inline-block px-3 py-1 rounded-full border border-neon-green/30 bg-neon-green/5 text-xs text-neon-green font-medium mb-4">WHY GLOOPR</div>
+          <h2 class="font-display text-4xl md:text-5xl font-bold tracking-tight mb-6">Why Jaipur <br /><span class="gradient-text">chooses GLOOPR</span></h2>
+          <p class="text-white/60 mb-8 max-w-md">GLOOPR provides professional car cleaning services at your doorstep — whenever you want, at prices that don't sting. Trained technicians, premium products, zero hassle.</p>
+          <div class="grid grid-cols-2 gap-4">
+            <div class="glass-card rounded-2xl p-5">
+              <div class="text-3xl md:text-4xl font-bold gradient-text mb-1" data-counter="65" data-suffix="%">0%</div>
+              <div class="text-sm text-white/60">Quality Services</div>
+            </div>
+            <div class="glass-card rounded-2xl p-5">
+              <div class="text-3xl md:text-4xl font-bold gradient-text mb-1" data-counter="85" data-suffix="%">0%</div>
+              <div class="text-sm text-white/60">Experienced Technicians</div>
+            </div>
+            <div class="glass-card rounded-2xl p-5">
+              <div class="text-3xl md:text-4xl font-bold gradient-text mb-1" data-counter="70" data-suffix="%">0%</div>
+              <div class="text-sm text-white/60">Customer Satisfaction</div>
+            </div>
+            <div class="glass-card rounded-2xl p-5">
+              <div class="text-3xl md:text-4xl font-bold gradient-text mb-1" data-counter="98" data-suffix="%">0%</div>
+              <div class="text-sm text-white/60">On-time arrivals</div>
+            </div>
+          </div>
+        </div>
+        <div class="reveal relative">
+          <div class="aspect-square rounded-3xl bg-gradient-to-br from-neon-green/20 via-neon-cyan/10 to-transparent border border-dark-border flex items-center justify-center relative overflow-hidden">
+            <div class="text-[200px] absolute -right-8 -bottom-8 opacity-20">🚗</div>
+            <div class="text-center z-10">
+              <div class="text-7xl mb-4">✨</div>
+              <h3 class="font-display text-3xl font-bold mb-2">Cars that <span class="gradient-text">sparkle</span></h3>
+              <p class="text-white/60 text-sm max-w-xs mx-auto">Treat your car to the detail it deserves.</p>
+            </div>
+          </div>
+          <div class="grid grid-cols-2 gap-4 mt-4">
+            <div class="glass-card rounded-2xl p-5 text-center">
+              <div class="text-2xl font-bold mb-1" data-counter="1200" data-suffix="+">0+</div>
+              <div class="text-xs text-white/60">Cars cleaned</div>
+            </div>
+            <div class="glass-card rounded-2xl p-5 text-center">
+              <div class="text-2xl font-bold mb-1" data-counter="4.8" data-suffix="★" data-decimals="1">0★</div>
+              <div class="text-xs text-white/60">Average rating</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== PROCESS ============== -->
+  <section id="process" class="py-24 md:py-32">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-16 reveal">
+        <div class="inline-block px-3 py-1 rounded-full border border-neon-cyan/30 bg-neon-cyan/5 text-xs text-neon-cyan font-medium mb-4">HOW IT WORKS</div>
+        <h2 class="font-display text-4xl md:text-6xl font-bold tracking-tight mb-4">From booking to <span class="gradient-text">sparkle</span></h2>
+        <p class="text-white/60 max-w-xl mx-auto">Four simple steps. Zero phone calls. Pay only when you're happy.</p>
+      </div>
+      <div class="relative">
+        <div class="hidden md:block absolute top-1/2 left-0 right-0 h-px bg-gradient-to-r from-transparent via-neon-green/30 to-transparent"></div>
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
+          <div class="reveal text-center">
+            <div class="relative inline-flex items-center justify-center w-20 h-20 rounded-full bg-dark-card border-2 border-neon-green/30 mb-4 hover:border-neon-green transition-colors">
+              <span class="text-3xl">📱</span>
+              <span class="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-gradient-to-br from-neon-green to-neon-cyan text-black text-xs font-bold flex items-center justify-center">01</span>
+            </div>
+            <h3 class="font-display text-lg font-bold mb-2">Book online</h3>
+            <p class="text-sm text-white/60 max-w-[200px] mx-auto">Pick a package, choose a time, and confirm in under 60 seconds.</p>
+          </div>
+          <div class="reveal text-center" style="--delay: 150ms;">
+            <div class="relative inline-flex items-center justify-center w-20 h-20 rounded-full bg-dark-card border-2 border-neon-green/30 mb-4 hover:border-neon-green transition-colors">
+              <span class="text-3xl">🚐</span>
+              <span class="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-gradient-to-br from-neon-green to-neon-cyan text-black text-xs font-bold flex items-center justify-center">02</span>
+            </div>
+            <h3 class="font-display text-lg font-bold mb-2">We come to you</h3>
+            <p class="text-sm text-white/60 max-w-[200px] mx-auto">Our crew arrives at your doorstep with everything we need.</p>
+          </div>
+          <div class="reveal text-center" style="--delay: 300ms;">
+            <div class="relative inline-flex items-center justify-center w-20 h-20 rounded-full bg-dark-card border-2 border-neon-green/30 mb-4 hover:border-neon-green transition-colors">
+              <span class="text-3xl">✨</span>
+              <span class="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-gradient-to-br from-neon-green to-neon-cyan text-black text-xs font-bold flex items-center justify-center">03</span>
+            </div>
+            <h3 class="font-display text-lg font-bold mb-2">Watch the magic</h3>
+            <p class="text-sm text-white/60 max-w-[200px] mx-auto">Relax while we restore your car, inside and out.</p>
+          </div>
+          <div class="reveal text-center" style="--delay: 450ms;">
+            <div class="relative inline-flex items-center justify-center w-20 h-20 rounded-full bg-dark-card border-2 border-neon-green/30 mb-4 hover:border-neon-green transition-colors">
+              <span class="text-3xl">💸</span>
+              <span class="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-gradient-to-br from-neon-green to-neon-cyan text-black text-xs font-bold flex items-center justify-center">04</span>
+            </div>
+            <h3 class="font-display text-lg font-bold mb-2">Pay after</h3>
+            <p class="text-sm text-white/60 max-w-[200px] mx-auto">Inspect the result. Pay only when you're happy.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== REVIEWS ============== -->
+  <section id="reviews" class="py-24 md:py-32 bg-dark-card/30">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-12 reveal">
+        <div class="inline-block px-3 py-1 rounded-full border border-neon-green/30 bg-neon-green/5 text-xs text-neon-green font-medium mb-4">REVIEWS</div>
+        <h2 class="font-display text-4xl md:text-6xl font-bold tracking-tight mb-4">What our <span class="gradient-text">drivers say</span></h2>
+      </div>
+
+      <div class="grid lg:grid-cols-3 gap-6 mb-12">
+        <!-- Overall rating -->
+        <div class="reveal glass-card rounded-3xl p-6 lg:col-span-1">
+          <div class="text-center mb-6">
+            <div class="text-6xl font-bold gradient-text mb-2">4.8</div>
+            <div class="flex gap-0.5 justify-center text-yellow-400 text-xl">★★★★★</div>
+            <div class="text-sm text-white/50 mt-2">Based on 512+ reviews</div>
+          </div>
+          <div class="space-y-2" id="rating-bars">
+            <div class="flex items-center gap-3 text-sm"><span class="w-6 text-white/50">5★</span><div class="flex-1 h-2 bg-dark-border rounded-full overflow-hidden"><div class="h-full bg-gradient-to-r from-yellow-400 to-yellow-500 bar" data-pct="78" style="width: 0%;"></div></div><span class="w-10 text-right text-white/50">78%</span></div>
+            <div class="flex items-center gap-3 text-sm"><span class="w-6 text-white/50">4★</span><div class="flex-1 h-2 bg-dark-border rounded-full overflow-hidden"><div class="h-full bg-gradient-to-r from-yellow-400 to-yellow-500 bar" data-pct="15" style="width: 0%;"></div></div><span class="w-10 text-right text-white/50">15%</span></div>
+            <div class="flex items-center gap-3 text-sm"><span class="w-6 text-white/50">3★</span><div class="flex-1 h-2 bg-dark-border rounded-full overflow-hidden"><div class="h-full bg-gradient-to-r from-yellow-400 to-yellow-500 bar" data-pct="5" style="width: 0%;"></div></div><span class="w-10 text-right text-white/50">5%</span></div>
+            <div class="flex items-center gap-3 text-sm"><span class="w-6 text-white/50">2★</span><div class="flex-1 h-2 bg-dark-border rounded-full overflow-hidden"><div class="h-full bg-gradient-to-r from-yellow-400 to-yellow-500 bar" data-pct="1" style="width: 0%;"></div></div><span class="w-10 text-right text-white/50">1%</span></div>
+            <div class="flex items-center gap-3 text-sm"><span class="w-6 text-white/50">1★</span><div class="flex-1 h-2 bg-dark-border rounded-full overflow-hidden"><div class="h-full bg-gradient-to-r from-yellow-400 to-yellow-500 bar" data-pct="1" style="width: 0%;"></div></div><span class="w-10 text-right text-white/50">1%</span></div>
+          </div>
+        </div>
+
+        <!-- Featured review -->
+        <div class="reveal glass-card rounded-3xl p-6 md:p-8 lg:col-span-2" id="featured-review-wrapper">
+          <div id="featured-review">
+            <div class="flex items-center gap-3 mb-4">
+              <div id="featured-initials" class="w-10 h-10 rounded-full bg-gradient-to-br from-neon-green to-neon-cyan flex items-center justify-center text-black font-bold text-sm">RS</div>
+              <div>
+                <div class="flex items-center gap-2">
+                  <span id="featured-name" class="font-semibold">Rahul Sherewala</span>
+                  <span class="px-2 py-0.5 rounded-full bg-neon-green/10 border border-neon-green/30 text-neon-green text-xs">✓ Verified</span>
+                </div>
+                <div id="featured-meta" class="text-xs text-white/50">Hyundai Creta · Jaipur · 2 weeks ago</div>
+              </div>
+            </div>
+            <div id="featured-stars" class="flex gap-0.5 text-yellow-400 text-sm">★★★★★</div>
+            <p id="featured-text" class="text-white/80 mt-4 text-lg leading-relaxed">"The team arrived on time and the car looked better than when I drove it out of the showroom. Staff were polite, professional, and explained every step. Worth every rupee."</p>
+          </div>
+          <div class="flex items-center justify-between mt-6">
+            <div class="flex gap-2" id="review-dots">
+              <button class="h-1.5 rounded-full w-8 bg-neon-green" data-idx="0" aria-label="Show review 1"></button>
+              <button class="h-1.5 rounded-full w-1.5 bg-white/20 hover:bg-white/40" data-idx="1" aria-label="Show review 2"></button>
+              <button class="h-1.5 rounded-full w-1.5 bg-white/20 hover:bg-white/40" data-idx="2" aria-label="Show review 3"></button>
+              <button class="h-1.5 rounded-full w-1.5 bg-white/20 hover:bg-white/40" data-idx="3" aria-label="Show review 4"></button>
+              <button class="h-1.5 rounded-full w-1.5 bg-white/20 hover:bg-white/40" data-idx="4" aria-label="Show review 5"></button>
+              <button class="h-1.5 rounded-full w-1.5 bg-white/20 hover:bg-white/40" data-idx="5" aria-label="Show review 6"></button>
+            </div>
+            <div class="flex gap-2">
+              <button id="review-prev" class="w-8 h-8 rounded-full border border-white/20 hover:border-white/40 flex items-center justify-center" aria-label="Previous review">←</button>
+              <button id="review-next" class="w-8 h-8 rounded-full border border-white/20 hover:border-white/40 flex items-center justify-center" aria-label="Next review">→</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Smaller review grid -->
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4" id="review-grid"></div>
+    </div>
+  </section>
+
+  <!-- ============== FAQ ============== -->
+  <section id="faq" class="py-24 md:py-32">
+    <div class="max-w-3xl mx-auto px-6">
+      <div class="text-center mb-12 reveal">
+        <div class="inline-block px-3 py-1 rounded-full border border-neon-cyan/30 bg-neon-cyan/5 text-xs text-neon-cyan font-medium mb-4">FAQ</div>
+        <h2 class="font-display text-4xl md:text-6xl font-bold tracking-tight mb-4">Got <span class="gradient-text">questions?</span></h2>
+        <p class="text-white/60">The answers to the things people ask us most often.</p>
+      </div>
+      <div class="space-y-3" id="faq-list"></div>
+    </div>
+  </section>
+
+  <!-- ============== FOOTER ============== -->
+  <footer class="relative py-16 md:py-24 overflow-hidden bg-dark-card/50 border-t border-dark-border">
+    <div class="absolute inset-0 bg-grid opacity-20"></div>
+    <div class="absolute inset-0 bg-radial-gradient opacity-20"></div>
+    <div class="relative max-w-7xl mx-auto px-6">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+        <div>
+          <div class="flex items-center gap-2 mb-6">
+            <img src="favicon.svg" alt="GLOOPR" class="h-8 w-8" />
+            <span class="font-display text-xl font-bold tracking-tight">GLOOPR</span>
+          </div>
+          <p class="text-white/50 text-sm mb-6">Professional car cleaning at your doorstep. Quality work, honest pricing.</p>
+          <div class="space-y-3 text-sm">
+            <div class="flex items-start gap-2"><span class="text-white/50 mt-1">📍</span><span>Near Kavya Tour and Travel, behind Veer Teja Ji Mandir, 2nd Floor, Shivam Nagar, Ramnagariya, Jaipur 302019</span></div>
+            <div class="flex items-start gap-2"><span class="text-white/50 mt-1">📞</span><a href="tel:+917976487789" class="text-white/70 hover:text-white transition-colors">+91 79764 87789</a></div>
+            <div class="flex items-start gap-2"><span class="text-white/50 mt-1">✉️</span><a href="mailto:info@gloopr.in" class="text-white/70 hover:text-white transition-colors">info@gloopr.in</a></div>
+            <div class="flex items-start gap-2"><span class="text-white/50 mt-1">⏰</span><span>Mon – Sun · 8:00 AM – 8:00 PM</span></div>
+          </div>
+        </div>
+        <div>
+          <h3 class="font-semibold mb-4">Our solutions</h3>
+          <div class="space-y-3">
+            <a href="#packages" class="text-sm text-white/70 hover:text-white transition-colors flex items-center gap-2"><span>●</span>Quick Shine — ₹349/- (~1 hr)</a>
+            <a href="#packages" class="text-sm text-white/70 hover:text-white transition-colors flex items-center gap-2"><span>●</span>Deep Cleaning — ₹799/- (2–3 hrs)</a>
+            <a href="#packages" class="text-sm text-white/70 hover:text-white transition-colors flex items-center gap-2"><span>●</span>Rubbing &amp; Polishing — ₹1399/- (2–3 hrs)</a>
+            <a href="#packages" class="text-sm text-white/70 hover:text-white transition-colors flex items-center gap-2"><span>●</span>Windshield Polish — ₹799/- (~2 hrs)</a>
+            <a href="#booking" class="text-sm text-neon-green hover:text-neon-cyan transition-colors flex items-center gap-2"><span>→</span>Book a wash</a>
+          </div>
+        </div>
+        <div>
+          <h3 class="font-semibold mb-4">Stay in the loop</h3>
+          <p class="text-sm text-white/50 mb-4">Special deals. Car care tips. Jaipur updates.</p>
+          <div class="mb-6">
+            <form id="newsletter-form" class="flex gap-3">
+              <input type="email" placeholder="your@email.com" class="flex-1 bg-dark-card border border-dark-border rounded-lg px-4 py-3 text-sm placeholder-white/30 focus:border-neon-green/50 focus:outline-none" required />
+              <button class="px-4 py-3 rounded-lg bg-neon-green text-black text-sm font-semibold hover:bg-neon-cyan transition-colors">Go</button>
+            </form>
+          </div>
+          <div class="flex items-center justify-between">
+            <a href="https://instagram.com/gloopr.in" target="_blank" rel="noopener noreferrer" class="text-white/50 hover:text-white transition-colors text-lg" aria-label="Instagram">📷</a>
+            <div class="text-xs text-white/40">Operational in Jaipur</div>
+          </div>
+        </div>
+      </div>
+      <div class="mt-12 pt-8 border-t border-dark-border">
+        <div class="flex flex-col md:flex-row items-center justify-center gap-4 text-sm text-white/40">
+          <p>© Copyright GLOOPR. All rights reserved.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============== WHATSAPP FLOAT ============== -->
+  <a id="wa-float" href="https://wa.me/917976487789?text=Hi%20GLOOPR!%20I'd%20like%20to%20book%20a%20car%20wash%20%F0%9F%9A%97" target="_blank" rel="noopener noreferrer" class="fixed bottom-6 right-6 z-40 w-14 h-14 rounded-full bg-[#25D366] flex items-center justify-center shadow-2xl shadow-[#25D366]/30 hover:scale-110 transition-all opacity-0 pointer-events-none" aria-label="Chat on WhatsApp">
+    <span class="absolute inset-0 rounded-full bg-[#25D366] animate-ping opacity-30"></span>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" class="w-7 h-7 relative z-10">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+    </svg>
+  </a>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

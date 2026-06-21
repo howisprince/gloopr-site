@@ -1,0 +1,196 @@
+/* ============ ROOT & GLOBALS ============ */
+* {
+  border-color: #1f1f1f;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-feature-settings: "rlig" 1, "calt" 1;
+  background: #0a0a0a;
+  color: #fff;
+}
+
+::selection {
+  background: rgba(0, 255, 136, 0.3);
+  color: #fff;
+}
+
+/* ============ UTILITIES ============ */
+.gradient-text {
+  background: linear-gradient(90deg, #00ff88, #00e5ff, #00ff88) !important;
+  background-size: 200% auto !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  color: transparent !important;
+  animation: gradient-shift 4s ease infinite;
+  display: inline-block;
+}
+
+.glass-card {
+  background: rgba(20, 20, 20, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid #1f1f1f;
+}
+
+.bg-grid {
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+.bg-radial-gradient {
+  background:
+    radial-gradient(circle at 50% 0%, rgba(0, 255, 136, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(0, 229, 255, 0.1) 0%, transparent 40%);
+}
+
+.form-input {
+  width: 100%;
+  background: #141414;
+  border: 1px solid #1f1f1f;
+  border-radius: 0.75rem;
+  padding: 0.75rem 1rem;
+  color: #fff;
+  transition: border-color 0.2s;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: rgba(0, 255, 136, 0.5);
+}
+
+.form-input::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+select.form-input {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='white' viewBox='0 0 16 16'%3E%3Cpath d='M4 6l4 4 4-4'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 2.5rem;
+}
+
+/* ============ ANIMATIONS ============ */
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-30px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(1.1); }
+}
+
+@keyframes scroll-bounce {
+  0%, 100% { transform: translateY(0); opacity: 1; }
+  50% { transform: translateY(12px); opacity: 0.3; }
+}
+
+.animate-float {
+  animation: float 8s ease-in-out infinite;
+}
+
+.animate-scroll {
+  animation: scroll-bounce 1.5s ease-in-out infinite;
+}
+
+/* ============ SCROLL REVEAL ============ */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1) var(--delay, 0ms),
+              transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) var(--delay, 0ms);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Default visible if JS doesn't run (no-JS fallback) */
+html.no-js .reveal {
+  opacity: 1;
+  transform: none;
+}
+
+/* ============ NAVBAR ============ */
+#navbar {
+  background: transparent;
+}
+
+#navbar.scrolled {
+  background: rgba(10, 10, 10, 0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid #1f1f1f;
+}
+
+/* ============ BEFORE/AFTER ============ */
+#ba-before {
+  clip-path: inset(0 50% 0 0);
+  user-select: none;
+}
+
+/* ============ FAQ ============ */
+.faq-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, opacity 0.3s ease, padding 0.3s ease;
+  opacity: 0;
+}
+
+.faq-item.open .faq-content {
+  max-height: 300px;
+  opacity: 1;
+}
+
+.faq-item.open .faq-icon {
+  transform: rotate(45deg);
+}
+
+.faq-icon {
+  transition: transform 0.2s ease;
+  color: #00ff88;
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+/* ============ REVIEW CARDS ============ */
+.review-card {
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.review-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(0, 255, 136, 0.3);
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ============ MOBILE MENU OPEN ============ */
+.mobile-open #bar1 { transform: translateY(8px) rotate(45deg); }
+.mobile-open #bar2 { opacity: 0; }
+.mobile-open #bar3 { transform: translateY(-8px) rotate(-45deg); }
+
+.mobile-open #mobile-menu {
+  max-height: 500px;
+}

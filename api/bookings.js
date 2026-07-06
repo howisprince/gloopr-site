@@ -6,7 +6,7 @@ export default async function handler(req, res) {
     const query = req.query || {};
     if (query.action === 'setup') {
         const authHeader = req.headers.authorization;
-        if (authHeader !== 'Bearer gloopr-admin-secret-2025') return res.status(401).json({ error: 'Unauthorized' });
+        if (authHeader !== `Bearer ${process.env.ADMIN_SECRET}`) return res.status(401).json({ error: 'Unauthorized' });
         try {
             await sql`
                 CREATE TABLE IF NOT EXISTS Bookings (
@@ -51,7 +51,7 @@ export default async function handler(req, res) {
 
   // Admin routes below (require authentication)
   const authHeader = req.headers.authorization;
-  if (authHeader !== 'Bearer gloopr-admin-secret-2025') {
+  if (authHeader !== `Bearer ${process.env.ADMIN_SECRET}`) {
       return res.status(401).json({ error: 'Unauthorized' });
   }
 

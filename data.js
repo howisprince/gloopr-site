@@ -1,11 +1,57 @@
 // Static content for the site. No build step required.
 
 const PACKAGES = {
-  quick: { name: "Quick Shine", price: 349 },
-  deep: { name: "Deep Cleaning", price: 799 },
-  rubbing: { name: "Rubbing & Polishing", price: 1399 },
-  windshield: { name: "Windshield Polish", price: 799 },
+  quick: {
+    name: "Quick Shine",
+    duration: "~1 hr",
+    includes: ["Vacuum cleaning", "Shampoo washing", "Tyre polish", "Interior dusting"],
+    pricing: {
+      Hatchback: 349,
+      Sedan: 399,
+      "Compact SUV": 399,
+      "5 Seater SUV": 449,
+      "7 Seater SUV": 499,
+    },
+  },
+  deep: {
+    name: "Deep Cleaning",
+    duration: "2–3 hrs",
+    includes: ["Quick shine + interior polishing", "Door-dashboard-seat-roof-mats-trunk dry cleaning"],
+    pricing: {
+      Hatchback: 799,
+      Sedan: 999,
+      "Compact SUV": 999,
+      "5 Seater SUV": 1199,
+      "7 Seater SUV": 1399,
+    },
+  },
+  rubbing: {
+    name: "Rubbing & Polishing",
+    duration: "2–3 hrs",
+    includes: ["Shampoo wash", "Boot/roof buffing", "Doors-headlight-bonnet-sandpaper rubbing", "Exterior wax polishing"],
+    pricing: {
+      Hatchback: 1399,
+      Sedan: 1599,
+      "Compact SUV": 1599,
+      "5 Seater SUV": 1699,
+      "7 Seater SUV": 1799,
+    },
+  },
+  windshield: {
+    name: "Windshield Polish",
+    duration: "~2 hrs",
+    includes: ["Shampoo wash", "Windshield-headlight sandpaper rubbing", "Water-repellent coat"],
+    pricing: {
+      Hatchback: 799,
+      Sedan: 999,
+      "Compact SUV": 999,
+      "5 Seater SUV": 1199,
+      "7 Seater SUV": 1199,
+    },
+  },
 };
+
+const CAR_TYPES = ["Hatchback", "Sedan", "Compact SUV", "5 Seater SUV", "7 Seater SUV"];
 
 const REVIEWS = [
   {
@@ -37,7 +83,7 @@ const REVIEWS = [
     rating: 4,
     car: "Tata Nexon",
     date: "1 week ago",
-    text: "Quick shine was perfect for a Sunday morning. The tire dressing is a nice touch. Took about 50 minutes as advertised.",
+    text: "Quick shine was perfect for a Sunday morning. The tyre dressing is a nice touch. Took about 50 minutes as advertised.",
     city: "Jaipur",
   },
   {
@@ -77,7 +123,7 @@ const FAQS = [
   },
   {
     q: "Do you service my area?",
-    a: "We currently cover the greater Jaipur metro area. Enter your pin code in the booking form and we'll confirm availability before charging anything.",
+    a: "We currently cover the greater Jaipur metro area. Enter your address in the booking form and we'll confirm availability before sending anyone.",
   },
   {
     q: "Can I book a recurring plan?",
@@ -100,11 +146,4 @@ const ADD_ONS = {
   ceramic: 499,
   leather: 249,
   pet: 199,
-};
-
-const CAR_MULTIPLIER = {
-  Hatchback: 1.0,
-  Sedan: 1.0,
-  SUV: 1.15,
-  Premium: 1.3,
 };

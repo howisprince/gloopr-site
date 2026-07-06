@@ -1,3 +1,33 @@
+
+function escapeHTML(str) {
+    if (!str) return '';
+    return String(str).replace(/[&<>'"]/g,
+        tag => ({
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            "'": '&#39;',
+            '"': '&quot;'
+        }[tag] || tag)
+    );
+}
+
+function getAdminToken() {
+    let token = localStorage.getItem('gloopr_admin_token');
+    if (!token) {
+        token = prompt('Enter Admin Password:');
+        if (token) {
+            localStorage.setItem('gloopr_admin_token', token);
+        }
+    }
+    return token;
+}
+
+function handleAuthError() {
+    localStorage.removeItem('gloopr_admin_token');
+    alert('Authentication failed. Please reload the page and try again with the correct password.');
+    location.reload();
+}
 function switchTab(tabId) {
     document.querySelectorAll('.tab-btn').forEach(btn => {
         btn.classList.remove('active', 'text-emerald-500');
@@ -21,23 +51,24 @@ async function loadBookings() {
 
     try {
         const res = await fetch('/api/bookings', {
-            headers: { 'Authorization': 'Bearer gloopr-admin-secret-2025' }
+            headers: { 'Authorization': `Bearer ${getAdminToken()}` }
         });
+        if (res.status === 401) { handleAuthError(); return; }
         const bookings = await res.json();
 
         tbody.innerHTML = bookings.map(b => `
             <tr>
                 <td class="px-6 py-4 whitespace-nowrap text-sm">
-                    <div class="font-medium text-gray-900">${b.bookingId}</div>
-                    <div class="text-gray-500">${b.date} at ${b.time}</div>
+                    <div class="font-medium text-gray-900">${escapeHTML(b.bookingId)}</div>
+                    <div class="text-gray-500">${escapeHTML(b.date)} at ${escapeHTML(b.time)}</div>
                 </td>
                 <td class="px-6 py-4 text-sm">
-                    <div class="font-medium">${b.name}</div>
-                    <div>${b.phone}</div>
-                    <div class="text-gray-500 text-xs">${b.address} (${b.city})</div>
+                    <div class="font-medium">${escapeHTML(b.name)}</div>
+                    <div>${escapeHTML(b.phone)}</div>
+                    <div class="text-gray-500 text-xs">${escapeHTML(b.address)} (${escapeHTML(b.city)})</div>
                 </td>
                 <td class="px-6 py-4 text-sm">
-                    <div>${b.pkg} - ${b.carType}</div>
+                    <div>${escapeHTML(b.pkg)} - ${escapeHTML(b.carType)}</div>
                     <div class="font-medium text-emerald-600">₹${b.price}</div>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm">
@@ -62,14 +93,15 @@ async function loadBookings() {
 
 async function updateBookingStatus(id, status) {
     try {
-        await fetch(`/api/bookings?id=${id}`, {
+        const res = await fetch(`/api/bookings?id=${id}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer gloopr-admin-secret-2025'
+                'Authorization': `Bearer ${getAdminToken()}`
             },
             body: JSON.stringify({ status })
         });
+        if (res.status === 401) { handleAuthError(); return; }
         loadBookings();
     } catch (err) {
         alert("Failed to update status");
@@ -148,11 +180,12 @@ async function savePackage(e, id) {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer gloopr-admin-secret-2025'
+                'Authorization': `Bearer ${getAdminToken()}`
             },
             body: JSON.stringify(payload)
         });
 
+        if (res.status === 401) { handleAuthError(); return; }
         if (res.ok) {
             alert('Package updated successfully');
         } else {

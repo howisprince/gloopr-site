@@ -41,7 +41,7 @@ export default async function handler(req, res) {
   if (req.method === 'PUT') {
     // Basic Auth Check
     const authHeader = req.headers.authorization;
-    if (authHeader !== 'Bearer gloopr-admin-secret-2025') {
+    if (authHeader !== `Bearer ${process.env.ADMIN_SECRET}`) {
         return res.status(401).json({ error: 'Unauthorized' });
     }
 
@@ -76,7 +76,7 @@ export default async function handler(req, res) {
   // Create table helper (Admin setup)
   if (req.method === 'POST') {
      const authHeader = req.headers.authorization;
-     if (authHeader !== 'Bearer gloopr-admin-secret-2025') return res.status(401).json({ error: 'Unauthorized' });
+     if (authHeader !== `Bearer ${process.env.ADMIN_SECRET}`) return res.status(401).json({ error: 'Unauthorized' });
 
      const query = req.query || {};
      if (query.action === 'setup') {

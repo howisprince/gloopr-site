@@ -1,11 +1,7 @@
-// Static content for the site. No build step required.
+// Dynamic content loaded from API
+let PACKAGES = {};
 
-const PACKAGES = {
-  quick: { name: "Quick Shine", price: 349 },
-  deep: { name: "Deep Cleaning", price: 799 },
-  rubbing: { name: "Rubbing & Polishing", price: 1399 },
-  windshield: { name: "Windshield Polish", price: 799 },
-};
+const CAR_TYPES = ["Hatchback", "Sedan", "Compact SUV", "5 Seater SUV", "7 Seater SUV"];
 
 const REVIEWS = [
   {
@@ -37,7 +33,7 @@ const REVIEWS = [
     rating: 4,
     car: "Tata Nexon",
     date: "1 week ago",
-    text: "Quick shine was perfect for a Sunday morning. The tire dressing is a nice touch. Took about 50 minutes as advertised.",
+    text: "Quick shine was perfect for a Sunday morning. The tyre dressing is a nice touch. Took about 50 minutes as advertised.",
     city: "Jaipur",
   },
   {
@@ -77,7 +73,7 @@ const FAQS = [
   },
   {
     q: "Do you service my area?",
-    a: "We currently cover the greater Jaipur metro area. Enter your pin code in the booking form and we'll confirm availability before charging anything.",
+    a: "We currently cover the greater Jaipur metro area. Enter your address in the booking form and we'll confirm availability before sending anyone.",
   },
   {
     q: "Can I book a recurring plan?",
@@ -102,9 +98,14 @@ const ADD_ONS = {
   pet: 199,
 };
 
-const CAR_MULTIPLIER = {
-  Hatchback: 1.0,
-  Sedan: 1.0,
-  SUV: 1.15,
-  Premium: 1.3,
-};
+// Fetch packages from the server
+async function loadPackagesData() {
+  try {
+    const res = await fetch('/api/packages');
+    if (res.ok) {
+      PACKAGES = await res.json();
+    }
+  } catch (err) {
+    console.error("Failed to load packages from backend", err);
+  }
+}

@@ -91,6 +91,13 @@
     });
   });
 
+  // Load dynamic data before interacting
+  if (typeof loadPackagesData === 'function') {
+      loadPackagesData().then(() => {
+          updateCalc();
+      });
+  }
+
   // ============== BOOKING FORM ==============
   const bookingForm = document.getElementById("booking-form");
   const bookingSuccess = document.getElementById("booking-success");
@@ -111,7 +118,7 @@
     e.target.value = e.target.value.replace(/\D/g, "").slice(0, 10);
   });
 
-  bookingForm?.addEventListener("submit", (ev) => {
+  bookingForm?.addEventListener("submit", async (ev) => {
     ev.preventDefault();
     if (!validateForm()) return;
 
@@ -119,6 +126,7 @@
       city: bookingForm.city.value,
       carType: bookingForm.carType.value,
       pkg: PACKAGES[selectedPkg]?.name || selectedPkg,
+      price: PACKAGES[selectedPkg]?.pricing?.[bookingForm.carType.value] || PACKAGES[selectedPkg]?.price || 0,
       date: bookingForm.date.value,
       time: bookingForm.time.value,
       name: bookingForm.name.value.trim(),
@@ -129,12 +137,27 @@
     const id = "SW-" + Date.now().toString().slice(-6);
     bookingIdEl.textContent = id;
 
+    // Send data to backend
+    try {
+        await fetch('/api/bookings', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                bookingId: id,
+                ...data
+            })
+        });
+    } catch (err) {
+        console.error("Failed to save booking to backend", err);
+    }
+
     const message = [
       `Hi GLOOPR! I'd like to book a car wash 🚗`,
       ``,
       `• City: ${data.city}`,
       `• Car: ${data.carType}`,
       `• Package: ${data.pkg}`,
+      `• Price: ₹${data.price.toLocaleString("en-IN")}/-`,
       `• Date: ${data.date}`,
       `• Time: ${data.time}`,
       ``,
@@ -149,6 +172,9 @@
     bookingForm.classList.add("hidden");
     bookingSuccess.classList.remove("hidden");
     bookingSuccess.scrollIntoView({ behavior: "smooth", block: "center" });
+
+    // Automatically open the WhatsApp link so the data goes somewhere immediately
+    window.open(continueWa.href, '_blank');
   });
 
   bookAnother?.addEventListener("click", () => {
@@ -223,22 +249,21 @@
   const calcTotal = document.getElementById("calc-total");
   const calcBreakdown = document.getElementById("calc-breakdown");
   let calcPkg = "deep";
-  let calcCar = "Sedan";
+  let calcCar = "Hatchback";
   let calcAddons = new Set();
   const carBtns = document.querySelectorAll(".car-btn");
   const pkgCalcBtns = document.querySelectorAll(".pkg-calc-btn");
   const addonBtns = document.querySelectorAll(".addon-btn");
-  let displayedTotal = PACKAGES[calcPkg].price;
+  let displayedTotal = 799;
 
   function updateCalc() {
-    const base = PACKAGES[calcPkg].price;
-    const mult = CAR_MULTIPLIER[calcCar] || 1;
-    const adjustedBase = Math.round(base * mult);
+    const pkgData = PACKAGES[calcPkg];
+    if (!pkgData) return;
+    const adjustedBase = pkgData.pricing?.[calcCar] || pkgData.price || 0;
     const addonsTotal = [...calcAddons].reduce((sum, id) => sum + (ADD_ONS[id] || 0), 0);
     const total = adjustedBase + addonsTotal;
 
-    let breakdown = `Base ₹${adjustedBase.toLocaleString("en-IN")}`;
-    if (mult > 1) breakdown += ` (${calcCar} +${Math.round((mult - 1) * 100)}%)`;
+    let breakdown = `Base ₹${adjustedBase.toLocaleString("en-IN")} (${calcCar})`;
     if (addonsTotal > 0) breakdown += ` + Add-ons ₹${addonsTotal.toLocaleString("en-IN")}`;
     calcBreakdown.textContent = breakdown;
 

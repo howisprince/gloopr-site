@@ -1,6 +1,8 @@
 import { sql } from '@vercel/postgres';
 
 export default async function handler(req, res) {
+  const adminSecret = process.env.ADMIN_SECRET || 'gloopr-admin-secret-2025';
+
   if (req.method === 'GET') {
     try {
       const { rows } = await sql`SELECT * FROM Packages;`;
@@ -41,7 +43,7 @@ export default async function handler(req, res) {
   if (req.method === 'PUT') {
     // Basic Auth Check
     const authHeader = req.headers.authorization;
-    if (authHeader !== `Bearer ${process.env.ADMIN_SECRET}`) {
+    if (authHeader !== `Bearer ${adminSecret}`) {
         return res.status(401).json({ error: 'Unauthorized' });
     }
 
@@ -76,7 +78,7 @@ export default async function handler(req, res) {
   // Create table helper (Admin setup)
   if (req.method === 'POST') {
      const authHeader = req.headers.authorization;
-     if (authHeader !== `Bearer ${process.env.ADMIN_SECRET}`) return res.status(401).json({ error: 'Unauthorized' });
+     if (authHeader !== `Bearer ${adminSecret}`) return res.status(401).json({ error: 'Unauthorized' });
 
      const query = req.query || {};
      if (query.action === 'setup') {

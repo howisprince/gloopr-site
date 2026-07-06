@@ -1,33 +1,31 @@
+function getAuthToken() {
+    return localStorage.getItem('gloopr_admin_token');
+}
 
 function escapeHTML(str) {
     if (!str) return '';
-    return String(str).replace(/[&<>'"]/g,
-        tag => ({
-            '&': '&amp;',
-            '<': '&lt;',
-            '>': '&gt;',
-            "'": '&#39;',
-            '"': '&quot;'
-        }[tag] || tag)
-    );
+    return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
 }
 
-function getAdminToken() {
-    let token = localStorage.getItem('gloopr_admin_token');
+async function checkAuth() {
+    let token = getAuthToken();
     if (!token) {
-        token = prompt('Enter Admin Password:');
+        token = prompt("Please enter the Admin Password:");
         if (token) {
             localStorage.setItem('gloopr_admin_token', token);
+        } else {
+            document.body.innerHTML = '<div class="p-10 text-center text-red-500 font-bold text-xl">Access Denied</div>';
+            return false;
         }
     }
-    return token;
+    return true;
 }
 
-function handleAuthError() {
-    localStorage.removeItem('gloopr_admin_token');
-    alert('Authentication failed. Please reload the page and try again with the correct password.');
-    location.reload();
-}
 function switchTab(tabId) {
     document.querySelectorAll('.tab-btn').forEach(btn => {
         btn.classList.remove('active', 'text-emerald-500');
@@ -51,9 +49,16 @@ async function loadBookings() {
 
     try {
         const res = await fetch('/api/bookings', {
-            headers: { 'Authorization': `Bearer ${getAdminToken()}` }
+            headers: { 'Authorization': `Bearer ${getAuthToken()}` }
         });
-        if (res.status === 401) { handleAuthError(); return; }
+
+        if (res.status === 401) {
+            localStorage.removeItem('gloopr_admin_token');
+            alert("Invalid or expired session. Please refresh and login again.");
+            document.body.innerHTML = '<div class="p-10 text-center text-red-500 font-bold text-xl">Access Denied</div>';
+            return;
+        }
+
         const bookings = await res.json();
 
         tbody.innerHTML = bookings.map(b => `
@@ -69,11 +74,11 @@ async function loadBookings() {
                 </td>
                 <td class="px-6 py-4 text-sm">
                     <div>${escapeHTML(b.pkg)} - ${escapeHTML(b.carType)}</div>
-                    <div class="font-medium text-emerald-600">₹${b.price}</div>
+                    <div class="font-medium text-emerald-600">₹${escapeHTML(b.price)}</div>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm">
                     <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${b.status === 'Completed' ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'}">
-                        ${b.status}
+                        ${escapeHTML(b.status)}
                     </span>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
@@ -97,11 +102,16 @@ async function updateBookingStatus(id, status) {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${getAdminToken()}`
+                'Authorization': `Bearer ${getAuthToken()}`
             },
             body: JSON.stringify({ status })
         });
-        if (res.status === 401) { handleAuthError(); return; }
+
+        if (res.status === 401) {
+            alert("Unauthorized. Please refresh and login again.");
+            return;
+        }
+
         loadBookings();
     } catch (err) {
         alert("Failed to update status");
@@ -118,21 +128,21 @@ async function loadPackages() {
 
         list.innerHTML = Object.entries(packages).map(([id, p]) => `
             <div class="bg-white rounded-lg shadow p-6">
-                <h3 class="text-lg font-bold mb-4">${p.name} <span class="text-sm font-normal text-gray-500">(${id})</span></h3>
+                <h3 class="text-lg font-bold mb-4">${escapeHTML(p.name)} <span class="text-sm font-normal text-gray-500">(${escapeHTML(id)})</span></h3>
 
-                <form onsubmit="savePackage(event, '${id}')" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <form onsubmit="savePackage(event, '${escapeHTML(id)}')" class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                         <label class="block text-sm text-gray-600 mb-1">Package Name</label>
-                        <input name="name" value="${p.name}" class="w-full border rounded p-2" required>
+                        <input name="name" value="${escapeHTML(p.name)}" class="w-full border rounded p-2" required>
                     </div>
                     <div>
                         <label class="block text-sm text-gray-600 mb-1">Duration</label>
-                        <input name="duration" value="${p.duration}" class="w-full border rounded p-2" required>
+                        <input name="duration" value="${escapeHTML(p.duration)}" class="w-full border rounded p-2" required>
                     </div>
 
                     <div class="md:col-span-2">
                         <label class="block text-sm text-gray-600 mb-1">Includes (comma separated)</label>
-                        <textarea name="includes" class="w-full border rounded p-2" rows="2">${p.includes.join(', ')}</textarea>
+                        <textarea name="includes" class="w-full border rounded p-2" rows="2">${escapeHTML(p.includes.join(', '))}</textarea>
                     </div>
 
                     <div class="md:col-span-2 mt-2">
@@ -140,8 +150,8 @@ async function loadPackages() {
                         <div class="grid grid-cols-2 md:grid-cols-5 gap-2">
                             ${Object.entries(p.pricing).map(([car, price]) => `
                                 <div>
-                                    <label class="block text-xs text-gray-500 mb-1">${car}</label>
-                                    <input type="number" name="price_${car.replace(/ /g, '_')}" value="${price}" class="w-full border rounded p-1 text-sm" required>
+                                    <label class="block text-xs text-gray-500 mb-1">${escapeHTML(car)}</label>
+                                    <input type="number" name="price_${car.replace(/ /g, '_')}" value="${escapeHTML(price)}" class="w-full border rounded p-1 text-sm" required>
                                 </div>
                             `).join('')}
                         </div>
@@ -180,12 +190,16 @@ async function savePackage(e, id) {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${getAdminToken()}`
+                'Authorization': `Bearer ${getAuthToken()}`
             },
             body: JSON.stringify(payload)
         });
 
-        if (res.status === 401) { handleAuthError(); return; }
+        if (res.status === 401) {
+            alert("Unauthorized. Please login again.");
+            return;
+        }
+
         if (res.ok) {
             alert('Package updated successfully');
         } else {
@@ -196,5 +210,9 @@ async function savePackage(e, id) {
     }
 }
 
-// Initial load
-loadBookings();
+// Check auth and initial load
+checkAuth().then(authorized => {
+    if (authorized) {
+        loadBookings();
+    }
+});

@@ -1,55 +1,5 @@
-// Static content for the site. No build step required.
-
-const PACKAGES = {
-  quick: {
-    name: "Quick Shine",
-    duration: "~1 hr",
-    includes: ["Vacuum cleaning", "Shampoo washing", "Tyre polish", "Interior dusting"],
-    pricing: {
-      Hatchback: 349,
-      Sedan: 399,
-      "Compact SUV": 399,
-      "5 Seater SUV": 449,
-      "7 Seater SUV": 499,
-    },
-  },
-  deep: {
-    name: "Deep Cleaning",
-    duration: "2–3 hrs",
-    includes: ["Quick shine + interior polishing", "Door-dashboard-seat-roof-mats-trunk dry cleaning"],
-    pricing: {
-      Hatchback: 799,
-      Sedan: 999,
-      "Compact SUV": 999,
-      "5 Seater SUV": 1199,
-      "7 Seater SUV": 1399,
-    },
-  },
-  rubbing: {
-    name: "Rubbing & Polishing",
-    duration: "2–3 hrs",
-    includes: ["Shampoo wash", "Boot/roof buffing", "Doors-headlight-bonnet-sandpaper rubbing", "Exterior wax polishing"],
-    pricing: {
-      Hatchback: 1399,
-      Sedan: 1599,
-      "Compact SUV": 1599,
-      "5 Seater SUV": 1699,
-      "7 Seater SUV": 1799,
-    },
-  },
-  windshield: {
-    name: "Windshield Polish",
-    duration: "~2 hrs",
-    includes: ["Shampoo wash", "Windshield-headlight sandpaper rubbing", "Water-repellent coat"],
-    pricing: {
-      Hatchback: 799,
-      Sedan: 999,
-      "Compact SUV": 999,
-      "5 Seater SUV": 1199,
-      "7 Seater SUV": 1199,
-    },
-  },
-};
+// Dynamic content loaded from API
+let PACKAGES = {};
 
 const CAR_TYPES = ["Hatchback", "Sedan", "Compact SUV", "5 Seater SUV", "7 Seater SUV"];
 
@@ -147,3 +97,15 @@ const ADD_ONS = {
   leather: 249,
   pet: 199,
 };
+
+// Fetch packages from the server
+async function loadPackagesData() {
+  try {
+    const res = await fetch('/api/packages');
+    if (res.ok) {
+      PACKAGES = await res.json();
+    }
+  } catch (err) {
+    console.error("Failed to load packages from backend", err);
+  }
+}

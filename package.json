@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/howisprince/gloopr-site#readme",
   "dependencies": {
-    "@vercel/postgres": "^0.10.0"
+    "@vercel/postgres": "^0.10.0",
+    "@vercel/speed-insights": "^2.0.0"
   }
 }

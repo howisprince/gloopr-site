@@ -111,15 +111,15 @@
     e.target.value = e.target.value.replace(/\D/g, "").slice(0, 10);
   });
 
-  bookingForm?.addEventListener("submit", (ev) => {
+  bookingForm?.addEventListener("submit", async (ev) => {
     ev.preventDefault();
     if (!validateForm()) return;
 
     const data = {
       city: bookingForm.city.value,
       carType: bookingForm.carType.value,
-      pkg: PACKAGES[selectedPkg]?.name || selectedPkg,
-      price: PACKAGES[selectedPkg]?.pricing?.[bookingForm.carType.value] || PACKAGES[selectedPkg]?.price || 0,
+      pkg: window.PACKAGES[selectedPkg]?.name || selectedPkg,
+      price: window.PACKAGES[selectedPkg]?.pricing?.[bookingForm.carType.value] || window.PACKAGES[selectedPkg]?.price || 0,
       date: bookingForm.date.value,
       time: bookingForm.time.value,
       name: bookingForm.name.value.trim(),
@@ -129,6 +129,25 @@
 
     const id = "SW-" + Date.now().toString().slice(-6);
     bookingIdEl.textContent = id;
+
+    // Submit data to backend API
+    try {
+      const submitBtn = bookingForm.querySelector('button[type="submit"]');
+      const originalText = submitBtn.textContent;
+      submitBtn.textContent = 'Booking...';
+      submitBtn.disabled = true;
+
+      await fetch('/api/bookings', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...data, bookingId: id }),
+      });
+
+      submitBtn.textContent = originalText;
+      submitBtn.disabled = false;
+    } catch (err) {
+      console.error('Failed to save booking to db', err);
+    }
 
     const message = [
       `Hi GLOOPR! I'd like to book a car wash 🚗`,
@@ -230,10 +249,10 @@
   const carBtns = document.querySelectorAll(".car-btn");
   const pkgCalcBtns = document.querySelectorAll(".pkg-calc-btn");
   const addonBtns = document.querySelectorAll(".addon-btn");
-  let displayedTotal = PACKAGES[calcPkg].pricing?.Hatchback || 799;
+  let displayedTotal = window.PACKAGES[calcPkg].pricing?.Hatchback || 799;
 
   function updateCalc() {
-    const pkgData = PACKAGES[calcPkg];
+    const pkgData = window.PACKAGES[calcPkg];
     const adjustedBase = pkgData.pricing?.[calcCar] || pkgData.price || 0;
     const addonsTotal = [...calcAddons].reduce((sum, id) => sum + (ADD_ONS[id] || 0), 0);
     const total = adjustedBase + addonsTotal;

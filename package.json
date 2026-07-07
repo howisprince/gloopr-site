@@ -138,5 +138,11 @@
   "bugs": {
     "url": "https://github.com/howisprince/gloopr-site/issues"
   },
-  "homepage": "https://github.com/howisprince/gloopr-site#readme"
+  "homepage": "https://github.com/howisprince/gloopr-site#readme",
+  "dependencies": {
+    "@vercel/analytics": "^2.0.1",
+    "@vercel/postgres": "^0.10.0"
+    "@vercel/postgres": "^0.10.0",
+    "@vercel/speed-insights": "^2.0.0"
+  }
 }

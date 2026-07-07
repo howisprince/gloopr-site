@@ -91,13 +91,6 @@
     });
   });
 
-  // Load dynamic data before interacting
-  if (typeof loadPackagesData === 'function') {
-      loadPackagesData().then(() => {
-          updateCalc();
-      });
-  }
-
   // ============== BOOKING FORM ==============
   const bookingForm = document.getElementById("booking-form");
   const bookingSuccess = document.getElementById("booking-success");
@@ -118,7 +111,7 @@
     e.target.value = e.target.value.replace(/\D/g, "").slice(0, 10);
   });
 
-  bookingForm?.addEventListener("submit", async (ev) => {
+  bookingForm?.addEventListener("submit", (ev) => {
     ev.preventDefault();
     if (!validateForm()) return;
 
@@ -136,20 +129,6 @@
 
     const id = "SW-" + Date.now().toString().slice(-6);
     bookingIdEl.textContent = id;
-
-    // Send data to backend
-    try {
-        await fetch('/api/bookings', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                bookingId: id,
-                ...data
-            })
-        });
-    } catch (err) {
-        console.error("Failed to save booking to backend", err);
-    }
 
     const message = [
       `Hi GLOOPR! I'd like to book a car wash 🚗`,
@@ -172,9 +151,6 @@
     bookingForm.classList.add("hidden");
     bookingSuccess.classList.remove("hidden");
     bookingSuccess.scrollIntoView({ behavior: "smooth", block: "center" });
-
-    // Automatically open the WhatsApp link so the data goes somewhere immediately
-    window.open(continueWa.href, '_blank');
   });
 
   bookAnother?.addEventListener("click", () => {
@@ -254,11 +230,10 @@
   const carBtns = document.querySelectorAll(".car-btn");
   const pkgCalcBtns = document.querySelectorAll(".pkg-calc-btn");
   const addonBtns = document.querySelectorAll(".addon-btn");
-  let displayedTotal = 799;
+  let displayedTotal = PACKAGES[calcPkg].pricing?.Hatchback || 799;
 
   function updateCalc() {
     const pkgData = PACKAGES[calcPkg];
-    if (!pkgData) return;
     const adjustedBase = pkgData.pricing?.[calcCar] || pkgData.price || 0;
     const addonsTotal = [...calcAddons].reduce((sum, id) => sum + (ADD_ONS[id] || 0), 0);
     const total = adjustedBase + addonsTotal;

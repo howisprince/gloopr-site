@@ -1,7 +1,7 @@
 import { sql } from '@vercel/postgres';
 
 export default async function handler(req, res) {
-  const adminSecret = process.env.ADMIN_SECRET || 'gloopr-admin-secret-2025';
+  const adminSecret = process.env.ADMIN_SECRET;
 
   if (req.method === 'POST') {
     // Setup helper (Admin only)

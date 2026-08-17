@@ -1,14 +1,14 @@
 import { sql } from '@vercel/postgres';
 
 export default async function handler(req, res) {
-  const adminSecret = process.env.ADMIN_SECRET || 'gloopr-admin-secret-2025';
+  const adminSecret = process.env.ADMIN_SECRET;
 
   if (req.method === 'POST') {
     // Setup helper (Admin only)
     const query = req.query || {};
     if (query.action === 'setup') {
         const authHeader = req.headers.authorization;
-        if (authHeader !== `Bearer ${adminSecret}`) return res.status(401).json({ error: 'Unauthorized' });
+        if (!adminSecret || authHeader !== `Bearer ${adminSecret}`) return res.status(401).json({ error: 'Unauthorized' });
         try {
             await sql`
                 CREATE TABLE IF NOT EXISTS Bookings (
@@ -53,7 +53,7 @@ export default async function handler(req, res) {
 
   // Admin routes below (require authentication)
   const authHeader = req.headers.authorization;
-  if (authHeader !== `Bearer ${adminSecret}`) {
+  if (!adminSecret || authHeader !== `Bearer ${adminSecret}`) {
       return res.status(401).json({ error: 'Unauthorized' });
   }
 

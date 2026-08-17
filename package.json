@@ -4,7 +4,9 @@
   "description": "",
   "main": "app.js",
   "dependencies": {
+    "@vercel/analytics": "^2.0.1",
     "@vercel/postgres": "^0.10.0",
+    "@vercel/speed-insights": "^2.0.0",
     "accepts": "^2.0.0",
     "ansi-regex": "^6.2.2",
     "ansi-styles": "^6.2.3",
@@ -139,10 +141,8 @@
     "url": "https://github.com/howisprince/gloopr-site/issues"
   },
   "homepage": "https://github.com/howisprince/gloopr-site#readme",
-  "dependencies": {
-    "@vercel/analytics": "^2.0.1",
-    "@vercel/postgres": "^0.10.0"
-    "@vercel/postgres": "^0.10.0",
-    "@vercel/speed-insights": "^2.0.0"
+  "devDependencies": {
+    "jest": "^30.4.2",
+    "jest-environment-jsdom": "^30.4.1"
   }
 }

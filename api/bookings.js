@@ -36,6 +36,19 @@ export default async function handler(req, res) {
     // Public route to create a booking
     try {
       const { bookingId, city, carType, pkg, price, date, time, name, phone, address } = req.body;
+
+      // Input validation
+      if (!bookingId || typeof bookingId !== 'string' || bookingId.length > 50) return res.status(400).json({ error: "Invalid bookingId" });
+      if (!city || typeof city !== 'string' || city.length > 100) return res.status(400).json({ error: "Invalid city" });
+      if (!carType || typeof carType !== 'string' || carType.length > 100) return res.status(400).json({ error: "Invalid carType" });
+      if (!pkg || typeof pkg !== 'string' || pkg.length > 100) return res.status(400).json({ error: "Invalid pkg" });
+      if (typeof price !== 'number') return res.status(400).json({ error: "Invalid price" });
+      if (!date || typeof date !== 'string' || date.length > 50) return res.status(400).json({ error: "Invalid date" });
+      if (!time || typeof time !== 'string' || time.length > 50) return res.status(400).json({ error: "Invalid time" });
+      if (!name || typeof name !== 'string' || name.length > 255) return res.status(400).json({ error: "Invalid name" });
+      if (!phone || typeof phone !== 'string' || phone.length > 20) return res.status(400).json({ error: "Invalid phone" });
+      if (!address || typeof address !== 'string') return res.status(400).json({ error: "Invalid address" });
+
       await sql`
         INSERT INTO Bookings (bookingId, city, carType, pkg, price, date, time, name, phone, address)
         VALUES (${bookingId}, ${city}, ${carType}, ${pkg}, ${price}, ${date}, ${time}, ${name}, ${phone}, ${address});

@@ -4,7 +4,9 @@
   "description": "",
   "main": "app.js",
   "dependencies": {
+    "@vercel/analytics": "^2.0.1",
     "@vercel/postgres": "^0.10.0",
+    "@vercel/speed-insights": "^2.0.0",
     "accepts": "^2.0.0",
     "ansi-regex": "^6.2.2",
     "ansi-styles": "^6.2.3",
@@ -125,7 +127,7 @@
     "zod": "^3.25.76"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -139,10 +141,11 @@
     "url": "https://github.com/howisprince/gloopr-site/issues"
   },
   "homepage": "https://github.com/howisprince/gloopr-site#readme",
-  "dependencies": {
-    "@vercel/analytics": "^2.0.1",
-    "@vercel/postgres": "^0.10.0"
-    "@vercel/postgres": "^0.10.0",
-    "@vercel/speed-insights": "^2.0.0"
+  "devDependencies": {
+    "@babel/core": "^8.0.1",
+    "@babel/preset-env": "^8.0.2",
+    "cross-env": "^10.1.0",
+    "jest": "^30.4.2",
+    "supertest": "^7.2.2"
   }
 }

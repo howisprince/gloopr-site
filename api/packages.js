@@ -1,7 +1,7 @@
 import { sql } from '@vercel/postgres';
 
 export default async function handler(req, res) {
-  const adminSecret = process.env.ADMIN_SECRET || 'gloopr-admin-secret-2025';
+  const adminSecret = process.env.ADMIN_SECRET;
 
   if (req.method === 'GET') {
     try {
@@ -43,7 +43,7 @@ export default async function handler(req, res) {
   if (req.method === 'PUT') {
     // Basic Auth Check
     const authHeader = req.headers.authorization;
-    if (authHeader !== `Bearer ${adminSecret}`) {
+    if (!adminSecret || authHeader !== `Bearer ${adminSecret}`) {
         return res.status(401).json({ error: 'Unauthorized' });
     }
 
@@ -51,12 +51,41 @@ export default async function handler(req, res) {
       const { id } = req.query || {}; // Safely unpack query in case it is undefined
       // If we use /api/packages?id=something
       let packageId = id;
-      if (!packageId) {
+      if (!packageId && req.body) {
          // Fallback if ID is in body
          packageId = req.body.id;
       }
 
+      if (!packageId) {
+        return res.status(400).json({ error: 'Missing package ID' });
+      }
+
+      if (!req.body || typeof req.body !== 'object') {
+        return res.status(400).json({ error: 'Missing or invalid request body' });
+      }
+
       const { name, duration, includes, pricing } = req.body;
+
+      if (!name || typeof name !== 'string') {
+        return res.status(400).json({ error: 'Invalid or missing name' });
+      }
+      if (!duration || typeof duration !== 'string') {
+        return res.status(400).json({ error: 'Invalid or missing duration' });
+      }
+      if (!Array.isArray(includes)) {
+        return res.status(400).json({ error: 'Invalid or missing includes array' });
+      }
+      if (!pricing || typeof pricing !== 'object') {
+        return res.status(400).json({ error: 'Invalid or missing pricing object' });
+      }
+
+      const requiredPricingKeys = ["Hatchback", "Sedan", "Compact SUV", "5 Seater SUV", "7 Seater SUV"];
+      for (const key of requiredPricingKeys) {
+        if (pricing[key] === undefined || typeof pricing[key] !== 'number') {
+          return res.status(400).json({ error: `Missing or invalid pricing for ${key}` });
+        }
+      }
+
       const includesStr = JSON.stringify(includes);
 
       await sql`
@@ -78,7 +107,7 @@ export default async function handler(req, res) {
   // Create table helper (Admin setup)
   if (req.method === 'POST') {
      const authHeader = req.headers.authorization;
-     if (authHeader !== `Bearer ${adminSecret}`) return res.status(401).json({ error: 'Unauthorized' });
+     if (!adminSecret || authHeader !== `Bearer ${adminSecret}`) return res.status(401).json({ error: 'Unauthorized' });
 
      const query = req.query || {};
      if (query.action === 'setup') {
